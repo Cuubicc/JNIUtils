@@ -13,7 +13,7 @@ public class NativeLibrary {
 
     private boolean loaded;
 
-    public NativeLibrary(String lib, LibFinder libFinder) {
+    private NativeLibrary(String lib, LibFinder libFinder) {
         this.lib = lib;
         this.libFinder = libFinder;
         this.loaded = false;
@@ -48,6 +48,11 @@ public class NativeLibrary {
 
     public static void load(String lib){
         NativeLibrary nativeLibrary = new NativeLibrary(lib, new DefaultLibFinder());
+        nativeLibrary.load();
+    }
+
+    public static void load(String lib, LibFinder libFinder){
+        NativeLibrary nativeLibrary = new NativeLibrary(lib, libFinder);
         nativeLibrary.load();
     }
 }
